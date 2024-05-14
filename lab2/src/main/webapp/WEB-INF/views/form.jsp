@@ -17,7 +17,7 @@
 </head>
 <body>
 <div class="container">
-    <form action="/param/save/2021" method="post">
+    <form action="/param/save/2022" method="post">
         <div class="form-group">
             <label for="y">Giá trị y:</label>
             <input type="text" class="form-control" id="y" name="y" value="2031">

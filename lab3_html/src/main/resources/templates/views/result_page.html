@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Information</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body style="background-color: #eee;">
+<div class="container py-5">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb" class="bg-body-tertiary rounded-3 p-3 mb-4">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="/student/form">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">User</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4" >
+            <div class="card mb-4" style="height: 358px">
+                <div class="card-body text-center">
+                    <img th:src="@{'getimg/'+${sv.avatar}}" alt="avatar"
+                         class="rounded img-fluid mt-3" style="width: 97px;">
+                    <h5 class="my-3" th:text="${sv.name}"></h5>
+                    <p class="text-muted mb-2" th:text="${sv.faculty}"></p>
+                    <p class="text-muted mb-4" th:text="${sv.email}"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <strong class="mb-0">Full Name</strong>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0" th:text="${sv.name}"></p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <strong class="mb-0">Email</strong>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0" th:text="${sv.email}"></p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <strong class="mb-0">Marks</strong>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0" th:text="${sv.marks}"></p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <strong class="mb-0">Gender</strong>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0" th:if="${sv.gender}">Male</p>
+                            <p class="text-muted mb-0" th:unless="${sv.gender}">Female</p>
+
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <strong class="mb-0">Faculty</strong>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0" th:text="${sv.faculty}"></p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <strong class="mb-0">Hobbies</strong>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted">
+                            <span th:each="hobby, iterStat : ${hobbies}">
+                                <span th:text="${hobby.value}"></span>
+                                <span th:if="${!iterStat.last}">, </span> <!-- Dấu cách chỉ được thêm nếu không phải là phần tử cuối cùng -->
+                            </span>
+                            </p>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
