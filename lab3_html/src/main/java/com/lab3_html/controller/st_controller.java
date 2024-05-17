@@ -36,9 +36,9 @@ public class st_controller {
     }
 
     @PostMapping("save")
-    public String save(@Validated @ModelAttribute("sv") Student student, BindingResult result, @RequestParam("avt") MultipartFile avatar, Model model) {
-        characterEncodingFilter.setEncoding("UTF-8");
-        if (result.hasErrors()) {
+    public StcharacterEncodingFilter.setEncoding("UTF-8");
+        if (result.hasErrors()) {ring save(@Validated @ModelAttribute("sv") Student student, BindingResult result, @RequestParam("avt") MultipartFile avatar, Model model) {
+
             return "views/form_page";
         }
         else {

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <!-- Thêm Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Đường dẫn của Bootstrap CSS có thể thay đổi tùy vào phiên bản và cách bạn tích hợp Bootstrap vào dự án của mình -->
+    <style>
+        /* Tùy chỉnh CSS của bạn nếu cần */
+        body {
+            padding: 20px;
+        }
+        .profile-info {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center">Result Page</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-4">
+            <img th:src="@{'/img/'+${avt}}" class="img-fluid rounded" alt="Avatar" width="150px">
+        </div>
+        <div class="col-md-8">
+            <p>Chúng tôi đã xác nhận thông tin của bạn <strong th:text="${name}"></strong></p>
+            <p>Bạn hãy theo dõi email: <strong th:text="${email}"></strong> nhé!</p>
+            <p>Cảm ơn bạn chúng tôi sẽ liên hệ cho bạn sớm nhất!</p>
+        </div>
+    </div>
+    <div class="row profile-info">
+        <!-- Thêm thông tin profile khác ở đây nếu cần -->
+    </div>
+</div>
+
+<!-- Thêm Bootstrap JS (Nếu cần) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Đường dẫn của Bootstrap JS có thể thay đổi tùy vào phiên bản và cách bạn tích hợp Bootstrap vào dự án của mình -->
+</body>
+</html>
