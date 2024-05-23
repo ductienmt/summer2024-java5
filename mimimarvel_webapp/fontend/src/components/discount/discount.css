@@ -1,0 +1,44 @@
+.full-main-discount{
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+.discount-header{
+    font-weight: 700;
+}
+
+.discount-main .main-text1 i{
+    background-color: #ed7672;
+    border-radius: 100%;
+    padding: 10px;
+    color: white;
+}
+
+.discount-main .main-text1 {
+    color: #ed7672;
+    font-weight: 700;
+}
+
+.discount-main h1{
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.discount-main p{
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.discount-main {
+    height: 500px;
+    margin-top: 3rem;
+    background-color: #efefef;
+}
+
+.discount-main .col-md-7{
+    padding: 4rem;
+}
+
+.discount-main .col-md-5{
+    padding-right: 4rem;
+}

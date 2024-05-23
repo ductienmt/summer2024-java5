@@ -1,0 +1,35 @@
+:root{
+    --dark-color:#0b1924;
+    
+    --light-color:#fff;
+    --success2-color:#f3f2f2;
+}
+
+.card-head{
+    background-color: var(--success2-color);
+}
+
+
+.card-head img{
+    width: 300px;
+    align-items: center;
+    
+}
+
+.card-head img:hover{
+    transition: 0.3 ease-in-out;
+    cursor: pointer;
+    transform: scale(1.07);
+}
+
+
+.card-body .icons-star i{
+    font-size: 1rem;
+    padding-right: 0.2rem;
+    color: #ffc12b;
+}
+
+.card-1{
+border: 0;
+}
+

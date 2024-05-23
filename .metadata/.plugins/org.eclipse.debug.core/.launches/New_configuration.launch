@@ -8,7 +8,6 @@
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
     <stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.springframework.ide.eclipse.boot.launch.BootMavenClassPathProvider"/>
     <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.lab1.Lab1Test2Application"/>
-    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="lab1_test2"/>
     <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.springframework.ide.eclipse.boot.launch.BootMavenSourcePathProvider"/>
     <booleanAttribute key="spring.boot.ansi.console" value="true"/>
     <stringAttribute key="spring.boot.app.properties" value=""/>

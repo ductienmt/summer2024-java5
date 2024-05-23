@@ -1,0 +1,26 @@
+.order-method {
+ background-color: #efefef;
+}
+
+.order-method .order-col1{
+    background-color: white;
+    margin: 1.5rem;
+    padding: 2rem;
+    text-align: center;
+}
+
+.order-method .order-col1:hover{
+    transform: scale(1.1);
+    transition: 0.3 ease-in-out;
+    cursor: pointer;
+    border: 1px solid #295dcf;
+    border-radius: 10px;
+    box-shadow: 1px 6px 10px -1px #868686;
+}
+
+
+.order-method .order-col1 h5{
+    font-weight: 700;
+    font-size: 1.5rem;
+
+}

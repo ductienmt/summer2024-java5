@@ -1,0 +1,25 @@
+:root{
+    --dark-color:#0b1924;
+    /* --primary-color:# */
+    --light-color:#fff;
+    --success-color:#9c9b9b;
+}
+
+.home-category{
+    /* border:1px solid var(--success-color); */
+    margin: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.home-category:hover{
+    transition: 0.3s ease-in-out;
+    border: 2px solid var(--dark-color);
+    transform: scale(1.05);
+    box-shadow: 1px 6px 10px -1px var(--success-color);
+}
+
+.name-header{
+    font-weight: 700;
+}
