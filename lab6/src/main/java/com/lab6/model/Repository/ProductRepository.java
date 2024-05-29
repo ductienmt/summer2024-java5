@@ -11,10 +11,10 @@ import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
     Page<Product> findByNameContainingIgnoreCase(String keyword, Pageable pageable);
-
     @Query("SELECT new com.lab6.model.entity.ReportCategory(p.category.name, SUM(p.price), COUNT(p)) " +
             "FROM Product p " +
             "GROUP BY p.category.name " +
             "ORDER BY SUM(p.price) DESC")
     List<ReportCategory> getReportCategory();
 }
+
