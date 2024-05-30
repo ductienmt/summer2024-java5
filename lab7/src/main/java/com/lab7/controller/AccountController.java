@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
@@ -39,5 +40,11 @@ public class AccountController {
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/account/login?message=You have been logged out";
+    }
+
+    @ResponseBody
+    @GetMapping("/account/edit")
+    public String edit() {
+        return "account/edit";
     }
 }

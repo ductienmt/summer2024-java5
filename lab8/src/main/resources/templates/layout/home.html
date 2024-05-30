@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{main}">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<article class="col" layout:fragment="article-content">
+    <h2 th:text="${#messages.msg('home.welcome')}"></h2>
+    <p th:text="${#messages.msg('home.content')}"></p>
+</article>
+</body>
+</html>
