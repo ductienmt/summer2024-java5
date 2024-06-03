@@ -1,6 +1,7 @@
 package com.lab7.controller;
 
 import com.lab7.enity.MailInfo;
+import com.lab7.service.ParamService;
 import com.lab7.service.impl.MailerServiceImpl;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.ServletContext;
@@ -29,6 +30,9 @@ public class mailerController {
     MailerServiceImpl mailerService;
 
     @Autowired
+    ParamService paramService;
+
+    @Autowired
     private ServletContext servletContext;
 
 
@@ -49,7 +53,7 @@ public class mailerController {
             @RequestParam("bcc") String bcc,
             @RequestParam("subject") String subject,
             @RequestParam("body") String body,
-            @RequestParam("attachments") MultipartFile[] attachments
+            @RequestParam(value = "attachments", required = false) MultipartFile[] attachments
     ) throws IOException {
         MailInfo mailInfo = new MailInfo();
         mailInfo.setTo(to);
@@ -66,22 +70,23 @@ public class mailerController {
         if (attachments != null && attachments.length > 0) {
             String[] attachmentPaths = new String[attachments.length];
 
-            // Get the static directory path
-            String realPath = servletContext.getRealPath("/static/uploads");
-            File uploadDir = new File(realPath);
-
-            // Create the uploads directory if it does not exist
-            if (!uploadDir.exists()) {
-                uploadDir.mkdirs();
-            }
-
+            // Define the path to the resources directory
+            String resourcePath = uploadFolder;
             for (int i = 0; i < attachments.length; i++) {
-                String fileName = attachments[i].getOriginalFilename();
-                String filePath = new File(uploadDir, fileName).getAbsolutePath();
-                Files.write(Paths.get(filePath), attachments[i].getBytes());
-                attachmentPaths[i] = filePath;
+                MultipartFile attachment = attachments[i];
+                if (attachment.isEmpty()) {
+                    continue;
+                }
+                try {
+                    File savedFile = paramService.save(attachment, resourcePath);
+                    attachmentPaths[i] = savedFile.getAbsolutePath();
+                } catch (RuntimeException e) {
+                    throw new IOException("Could not save attachment: " + attachment.getOriginalFilename(), e);
+                }
             }
             mailInfo.setAttachments(attachmentPaths);
+        } else {
+            mailInfo.setAttachments(new String[0]);
         }
 
         mailerService.queue(mailInfo);

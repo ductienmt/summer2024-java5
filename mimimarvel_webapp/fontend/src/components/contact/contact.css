@@ -1,0 +1,12 @@
+.custom-contact{
+    background-image: url('https://photo2.tinhte.vn/data/attachment-files/2023/12/8222601_285954516-578301940532355-5116958460572933021-n.jpg');
+    height: 450px;
+    align-items: center;
+}
+
+.text-custom-contact{
+    color: white;
+    font-size: 5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}

@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import logo from "../../assets/favicon.png";
 import cart from "../../assets/shopping_cart.png";
 import find from "../../assets/find.png";
+import "./header.css";
 import { useState, useEffect } from "react";
 
 const Header = () => {
@@ -48,16 +49,19 @@ const Header = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0 nav-ul">
               <li className="nav-li nav-item">
-                <NavLink>Trang chủ</NavLink>
+                <NavLink to="/">Trang chủ</NavLink>
               </li>
               <li className="nav-item nav-li">
-                <NavLink>Sản phẩm</NavLink>
+                <NavLink to="/products">Sản phẩm</NavLink>
               </li>
               <li className="nav-item nav-li">
-                <NavLink>Giới thiệu</NavLink>
+                <NavLink to="/service">Dịch vụ</NavLink>
               </li>
               <li className="nav-item nav-li">
-                <NavLink>Liên hệ</NavLink>
+                <NavLink to="/about">Giới thiệu</NavLink>
+              </li>
+              <li className="nav-item nav-li">
+                <NavLink to="/contact">Liên hệ</NavLink>
               </li>
             </ul>
             {/* search and shopping cart */}
@@ -77,11 +81,40 @@ const Header = () => {
                   //   data-bs-toggle="offcanvas"
                   //   data-bs-target="#offcanvasRight"
                   //   aria-controls="offcanvasRight"
-                  className="img-small"
+                  className="img-small mr-2"
                 />
                 {/* xử lý tổng số sản phẩm ở đây */}
                 {/* <span className="cart-total--item"></span> */}
               </NavLink>
+              <div className="dropdown px-3">
+                <a
+                  className="custom-dropdown-header dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Tài khoản
+                </a>
+
+                <ul className="dropdown-menu">
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Đăng ký
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Đăng nhập
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Đăng xuất
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </form>
           </div>
         </div>

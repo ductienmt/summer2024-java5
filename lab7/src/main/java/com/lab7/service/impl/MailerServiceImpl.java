@@ -10,8 +10,13 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +47,11 @@ public class MailerServiceImpl implements MailerService {
         if (mail.getAttachments() != null) {
             for (String attachment : mail.getAttachments()) {
                 // Assuming attachment is a path to the file
-                helper.addAttachment(attachment, new File(attachment));
+                if (attachment == null) {
+                    continue;
+                } else {
+                    helper.addAttachment(attachment, new File(attachment));
+                }
             }
         }
         // Gửi message đến SMTP server
@@ -64,6 +73,7 @@ public class MailerServiceImpl implements MailerService {
     public void queue(String to, String subject, String body) {
         queue(new MailInfo(to, subject, body));
     }
+
 
     @Scheduled(fixedDelay = 1000)
     public void run() {

@@ -10,7 +10,7 @@ const NewArrival = () => {
             <h2 className="name-header py-3">Sản phẩm mới</h2>
           </div>
           <div className="header-btn">
-            <a className="btn btn-primary">
+            <a to="/products" className="btn btn-primary">
               <span>Tất cả sản phẩm</span>{" "}
               <i className="fa-solid fa-arrow-right"></i>
             </a>
