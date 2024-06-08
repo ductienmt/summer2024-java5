@@ -1,7 +1,2 @@
-package com.minimarvel.repository;
-
-import com.minimarvel.entity.Product;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface ProductRepository extends JpaRepository<Product, Integer> {
+package com.minimarvel.repository;public interface ProductRepository {
 }
