@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JpaBuddyIdeaProjectConfig">
-    <option name="reLastEntityCreationPackage" value="backend/src/main/java/com/minimarvel" />
-    <option name="reverseEngineeringLastDbConnectionId" value="1eae6b16-cdea-4a53-af39-650ea1a656da__miniMarvel_dbo" />
+    <option name="reLastEntityCreationPackage" value="backend/src/main/java/com/minimarvel/entity" />
+    <option name="reverseEngineeringLastDbConnectionId" value="1eae6b16-cdea-4a53-af39-650ea1a656da" />
   </component>
 </project>

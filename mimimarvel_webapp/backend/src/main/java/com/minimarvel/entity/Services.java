@@ -12,7 +12,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "services")
-public class Service {
+public class Services {
     @Id
     @Nationalized
     @Column(name = "id", nullable = false, length = 50)

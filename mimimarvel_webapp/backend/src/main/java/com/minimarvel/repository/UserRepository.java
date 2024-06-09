@@ -1,2 +1,12 @@
-package com.minimarvel.repository;public interface UserRepository {
+package com.minimarvel.repository;
+
+import com.minimarvel.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+    User findByUsername(String username);
+    User findByEmail(String email);
+    User findByPhone(String phone);
 }

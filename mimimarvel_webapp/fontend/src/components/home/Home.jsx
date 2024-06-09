@@ -2,7 +2,7 @@ import Category from "../category/category";
 import Discount from "../discount/discount";
 import OrderMethod from "../orderMethod/orderMethod";
 import NewArrival from "../products/newArrival";
-import Products from "../products/products";
+import PopularProduct from "../products/popular_product/popularProduct";
 import Banner from "./Banner/Banner";
 
 const Home = () => {
@@ -10,7 +10,7 @@ const Home = () => {
     <div>
       <Banner />
       <Category />
-      <Products />
+      <PopularProduct />
       <NewArrival />
       <Discount />
       <OrderMethod />
