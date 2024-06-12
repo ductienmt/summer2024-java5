@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin("http://localhost:5050/")
 @RequestMapping("/admin")
 public class AdminController {
 
@@ -15,9 +16,9 @@ public class AdminController {
     private AdminServiceImpl adminService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody AdminDTO adminDTO) {
+    public ResponseEntity<?> login(@RequestParam String username, @RequestParam String password) {
         try {
-            adminService.login(adminDTO.getUsername(), adminDTO.getPassword());
+            adminService.login(username, password);
             return ResponseEntity.ok("Login success");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Login failed");

@@ -24,17 +24,27 @@ public class PurchaseController {
     }
 
     @PostMapping("create")
-    public ResponseEntity<?> create(@RequestBody PurchaseDTO purchaseDTO, @RequestBody PurchaseDetailDTO purchaseDetailDTO) {
+    public ResponseEntity<?> create(@RequestBody PurchaseDTO purchaseDTO) {
         try {
-            purchaseService.createPurchase(purchaseDTO, purchaseDetailDTO);
+            purchaseService.createPurchase(purchaseDTO);
             return ResponseEntity.ok("Create purchase success");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Create purchase failed " + e.getMessage());
         }
     }
 
+    @PostMapping("createDetail")
+    public ResponseEntity<?> createDetail(@RequestBody PurchaseDetailDTO purchaseDetailDTO) {
+        try {
+            purchaseService.createPurchaseDetail(purchaseDetailDTO);
+            return ResponseEntity.ok("Create purchase detail success");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Create purchase detail failed " + e.getMessage());
+        }
+    }
+
     @PostMapping("update/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestParam String status) {
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestParam("orderStatus") String status) {
         try {
             purchaseService.updatePurchase(id, status);
             return ResponseEntity.ok("Update purchase success");

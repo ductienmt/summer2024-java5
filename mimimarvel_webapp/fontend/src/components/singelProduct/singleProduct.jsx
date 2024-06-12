@@ -28,8 +28,14 @@ const SingleProduct = () => {
   }, [productId]);
 
   const handleAddToCart = () => {
-    addToCart({ ...singleProduct, quantity: quantity });
-    alert("Đã thêm vào giỏ hàng");
+    const username = localStorage.getItem("username");
+    if (username == null) {
+      alert("Vui lòng đăng nhập để mua hàng");
+      return;
+    } else {
+      addToCart({ ...singleProduct, quantity: quantity });
+      alert("Đã thêm vào giỏ hàng");
+    }
   };
 
   const handleIncrease = () => {
@@ -61,6 +67,7 @@ const SingleProduct = () => {
       }
       // console.log(productRes.data.brandId);
       setSingleProduct(productRes.data);
+      setQuantity(1);
     } catch (error) {
       console.error("Error loading product", error);
     }

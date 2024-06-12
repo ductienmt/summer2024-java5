@@ -29,14 +29,24 @@ public class PurchaseServiceImpl implements PurchaseService {
     @Autowired
     private PurchaseMapper purchaseMapper;
 
+    private Long purchaseId;
+
 
     @Override
-    public void createPurchase(PurchaseDTO purchaseDTO, PurchaseDetailDTO purchaseDetailDTO) {
+    public void createPurchase(PurchaseDTO purchaseDTO) {
         Purchase purchase = purchaseMapper.toEntity(purchaseDTO);
         purchaseRepository.save(purchase);
-        PurchaseDetailDTO _purchaseDetail = purchaseDetailDTO;
-        _purchaseDetail.setPurchaseId(purchase.getId());
-        PurchaseDetail purchaseDetail = purchaseDetailMapper.toEntity(_purchaseDetail);
+        setPurchaseId(purchase.getId());
+    }
+
+    private void setPurchaseId(Long id){
+        this.purchaseId = id;
+    }
+
+    @Override
+    public void createPurchaseDetail(PurchaseDetailDTO purchaseDetailDTO) {
+        purchaseDetailDTO.setPurchaseId(purchaseId);
+        PurchaseDetail purchaseDetail = purchaseDetailMapper.toEntity(purchaseDetailDTO);
         purchaseDetailRepository.save(purchaseDetail);
     }
 

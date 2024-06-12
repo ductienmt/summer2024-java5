@@ -33,8 +33,14 @@ public class PurchaseMapper {
         purchaseDTO.setPurchaseDate(purchase.getPurchaseDate());
         purchaseDTO.setShippingAddress(purchase.getShippingAddress());
         purchaseDTO.setOrderStatus(purchase.getOrderStatus());
-        purchaseDTO.setServicesId(purchase.getServices().getId());
-        purchaseDTO.setVoucherId(purchase.getVoucher().getId());
+        if (purchase.getServices() != null || purchase.getVoucher() != null) {
+            purchaseDTO.setServicesId(purchase.getServices().getId());
+            purchaseDTO.setVoucherId(purchase.getVoucher().getId());
+        } else {
+            purchaseDTO.setServicesId(null);
+            purchaseDTO.setVoucherId(null);
+        }
+
         return purchaseDTO;
     }
 
@@ -51,8 +57,13 @@ public class PurchaseMapper {
         purchase.setPurchaseDate(purchaseDTO.getPurchaseDate());
         purchase.setShippingAddress(purchaseDTO.getShippingAddress());
         purchase.setOrderStatus(purchaseDTO.getOrderStatus());
-        purchase.setServices(serviceRepository.findById(purchaseDTO.getServicesId()).orElse(null));
-        purchase.setVoucher(voucherRepository.findById(purchaseDTO.getVoucherId()).orElse(null));
+        if (purchaseDTO.getServicesId() != null || purchaseDTO.getVoucherId() != null) {
+            purchase.setServices(serviceRepository.findById(purchaseDTO.getServicesId()).orElse(null));
+            purchase.setVoucher(voucherRepository.findById(purchaseDTO.getVoucherId()).orElse(null));
+        } else {
+            purchase.setServices(null);
+            purchase.setVoucher(null);
+        }
         return purchase;
     }
 }

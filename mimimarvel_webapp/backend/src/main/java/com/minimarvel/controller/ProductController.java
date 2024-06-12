@@ -45,6 +45,15 @@ public class ProductController {
         }
     }
 
+    @GetMapping("getPopularProduct")
+    public ResponseEntity<?> getPopularProduct() {
+        try {
+            return ResponseEntity.ok(productService.getPopularProduct());
+        }catch (Exception e) {
+            return ResponseEntity.badRequest().body("Get product failed");
+        }
+    }
+
     @GetMapping("getByCategory/{categoryId}")
     public ResponseEntity<?> getByCategory(@PathVariable Integer categoryId) {
         try {

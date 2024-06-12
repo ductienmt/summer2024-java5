@@ -8,20 +8,27 @@ const Cart = () => {
   const [phone, setPhone] = useState("");
   const { cartItems, removeItem, incrementQuantity, decrementQuantity } =
     useContext(CartContext);
+  // Add a new state variable for the shipping address
+  const [shippingAddress, setShippingAddress] = useState("");
+
+  // Add a handler for the input field
+  const handleShippingAddressChange = (event) => {
+    setShippingAddress(event.target.value);
+  };
+
+  // Add the onChange event to the input field
+  <input
+    type="text"
+    className="your-input-class"
+    value={shippingAddress}
+    onChange={handleShippingAddressChange}
+  />;
 
   useEffect(() => {
     const phoneLo = localStorage.getItem("phone");
     if (phoneLo != null) {
       setPhone(phoneLo);
     }
-    const updatedPurchaseDetailData = cartItems.map((item) => ({
-      productId: item.id,
-      quantity: item.quantity,
-      unitPrice: item.price,
-      totalPrice: item.price * item.quantity,
-    }));
-    setPurchaseDetailData(updatedPurchaseDetailData);
-    console.log("Updated Purchase Detail Data:", updatedPurchaseDetailData);
     getTotalPrice();
   }, [cartItems]);
 
@@ -62,49 +69,76 @@ const Cart = () => {
     return yyyy + "-" + mm + "-" + dd;
   };
 
-  const [purchaseData, setPurchaseData] = useState({
-    userId: userId,
-    totalPrice: getTotalPrice(),
-    payment: "",
-    notes: "no",
-    purchaseDate: getDate(),
-    shippingAddress: "",
-    orderStatus: "Pending",
-    servicesId: "no",
-    voucherId: "no",
-  });
+  // Lặp qua từng item trong cartItems và gửi yêu cầu POST cho từng item
+  const sendPurchaseDetails = async (cartItems) => {
+    for (const item of cartItems) {
+      const purchaseDetail = {
+        id: null, // Assuming the server will generate this
+        purchaseId: null, // This will be filled in by the server
+        productId: item.id,
+        quantity: item.quantity,
+        unitPrice: item.price,
+        totalPrice: item.price * item.quantity,
+      };
 
-  const [purchaseDetailData, setPurchaseDetailData] = useState({
-    purchaseId: "",
-    productId: "",
-    quantity: "",
-    unitPrice: "",
-    totalPrice: "",
-  });
+      try {
+        const responseD = await axios.post(
+          "http://localhost:8080/purchase/createDetail",
+          purchaseDetail
+        );
 
-  const handlePurchaseChange = (e) => {
-    const { name, value } = e.target;
-    setPurchaseData({
-      ...purchaseData,
-      [name]: value,
-    });
+        if (responseD.status === 200) {
+          // Handle successful order for this item
+          console.log(`Đặt hàng thành công cho sản phẩm ${item.id}!`);
+        } else {
+          // Handle unsuccessful order for this item
+          console.log(`Đặt hàng thất bại cho sản phẩm ${item.id}!`);
+        }
+      } catch (error) {
+        // Handle error for this item
+        console.error(
+          `An error occurred while placing the order for product ${item.id}:`,
+          error
+        );
+      }
+    }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("Selected Payment:", purchaseData.payment);
+  const handleOrder = async () => {
+    // Create the purchase object
+    const purchase = {
+      id: null, // Assuming the server will generate this
+      userId: Number(userId),
+      totalPrice: getTotalPrice(),
+      payment: "tienmat", // Assuming this is the default payment method
+      notes: "", // Assuming no notes for now
+      purchaseDate: getDate(),
+      shippingAddress: shippingAddress, // Assuming no shipping address for now
+      orderStatus: "pending", // Assuming the order status is pending initially
+      servicesId: "null", // Assuming no servicesId for now
+      voucherId: "null", // Assuming no voucherId for now
+    };
+
+    // Send the POST request
     try {
       const response = await axios.post(
         "http://localhost:8080/purchase/create",
-        {
-          purchaseDTO: purchaseData,
-          purchaseDetailDTO: purchaseDetailData,
-        }
+        purchase
       );
-      console.log(response.data);
+
+      if (response.status === 200) {
+        // Handle successful order
+        alert("Đặt hàng thành công !");
+      } else {
+        // Handle unsuccessful order
+        alert("Đặt hàng thất bại !");
+      }
     } catch (error) {
-      console.error("Error:", error);
+      // Handle error
+      console.error("An error occurred while placing the order:", error);
     }
+
+    sendPurchaseDetails(cartItems);
   };
 
   return (
@@ -209,12 +243,10 @@ const Cart = () => {
                   <select
                     data-mdb-select-init
                     className="form-control form-control-lg"
-                    value={purchaseData.payment} // Set the selected value
                     name="payment"
-                    onChange={handlePurchaseChange} // Handle selection change
                   >
                     <option value="tienmat">Thanh toán tiền mặt</option>
-                    <option value="vnpay">Thanh toán VNPAY</option>
+                    {/* <option value="vnpay">Thanh toán VNPAY</option> */}
                   </select>
                 </div>
 
@@ -224,7 +256,6 @@ const Cart = () => {
                   <div data-mdb-input-init className="form-outline">
                     <input
                       type="text"
-                      id="form3Examplea2"
                       name="phone"
                       className="form-control form-control-lg"
                       placeholder="Nhập số điện thoại"
@@ -238,12 +269,11 @@ const Cart = () => {
                   <div data-mdb-input-init className="form-outline">
                     <input
                       type="text"
-                      id="form3Examplea2"
                       name="shippingAddress"
                       className="form-control form-control-lg"
                       placeholder="Nhập địa chỉ giao hàng"
-                      value={purchaseData.shippingAddress}
-                      onChange={handlePurchaseChange}
+                      value={shippingAddress}
+                      onChange={handleShippingAddressChange}
                       required
                     />
                   </div>
@@ -263,7 +293,7 @@ const Cart = () => {
                   className="btn btn-dark btn-block btn-lg col-12"
                   data-mdb-ripple-color="dark"
                   disabled={!cartItems || cartItems.length === 0}
-                  onClick={handleSubmit}
+                  onClick={handleOrder}
                 >
                   Đặt hàng
                 </button>

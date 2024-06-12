@@ -74,7 +74,7 @@ const Signup = () => {
             <div className="col-12 col-lg-9 col-xl-7">
               <div className="card shadow-2-strong card-registration">
                 <div className="card-body p-4 p-md-5">
-                  <h3 className="mb-4 pb-2 pb-md-0 mb-md-5">
+                  <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 text-white">
                     Đăng ký thành viên
                   </h3>
                   <form onSubmit={handleSubmit}>
@@ -94,7 +94,9 @@ const Signup = () => {
                               })
                             }
                           />
-                          <label className="form-label">Họ và tên</label>
+                          <label className="form-label text-white">
+                            Họ và tên
+                          </label>
                         </div>
                       </div>
                       <div className="col-md-6 mb-4">
@@ -112,7 +114,9 @@ const Signup = () => {
                               })
                             }
                           />
-                          <label className="form-label">Username</label>
+                          <label className="form-label text-white">
+                            Username
+                          </label>
                         </div>
                       </div>
                     </div>
@@ -136,11 +140,13 @@ const Signup = () => {
                               })
                             }
                           />
-                          <label className="form-label">Ngày sinh</label>
+                          <label className="form-label text-white">
+                            Ngày sinh
+                          </label>
                         </div>
                       </div>
                       <div className="col-md-6 mb-4">
-                        <h6 className="mb-2 pb-1">Giới tính: </h6>
+                        <h6 className="mb-2 pb-1 text-white">Giới tính: </h6>
 
                         <div className="form-check form-check-inline">
                           <input
@@ -156,7 +162,9 @@ const Signup = () => {
                               })
                             }
                           />
-                          <label className="form-check-label">Nữ</label>
+                          <label className="form-check-label text-white">
+                            Nữ
+                          </label>
                         </div>
 
                         <div className="form-check form-check-inline">
@@ -173,7 +181,9 @@ const Signup = () => {
                               })
                             }
                           />
-                          <label className="form-check-label">Nam</label>
+                          <label className="form-check-label text-white">
+                            Nam
+                          </label>
                         </div>
 
                         <div className="form-check form-check-inline">
@@ -190,7 +200,9 @@ const Signup = () => {
                               })
                             }
                           />
-                          <label className="form-check-label">Khác</label>
+                          <label className="form-check-label text-white">
+                            Khác
+                          </label>
                         </div>
                       </div>
                     </div>
@@ -211,7 +223,7 @@ const Signup = () => {
                               })
                             }
                           />
-                          <label className="form-label">Email</label>
+                          <label className="form-label text-white">Email</label>
                         </div>
                       </div>
                       <div className="col-md-6 mb-4 pb-2">
@@ -229,7 +241,9 @@ const Signup = () => {
                               })
                             }
                           />
-                          <label className="form-label">Số điện thoại</label>
+                          <label className="form-label text-white">
+                            Số điện thoại
+                          </label>
                         </div>
                       </div>
                     </div>
@@ -258,7 +272,9 @@ const Signup = () => {
                             </span>
                           </div>
 
-                          <label className="form-label">Mật khẩu</label>
+                          <label className="form-label text-white">
+                            Mật khẩu
+                          </label>
                         </div>
                       </div>
                       <div className="col-md-6 mb-4 pb-2">
@@ -283,7 +299,7 @@ const Signup = () => {
                             </span>
                           </div>
 
-                          <label className="form-label">
+                          <label className="form-label text-white">
                             Nhập lại mật khẩu
                           </label>
                         </div>
@@ -296,7 +312,7 @@ const Signup = () => {
                     <div className="mt-4 pt-2 row">
                       <input
                         data-mdb-ripple-init
-                        className="btn btn-primary btn-lg"
+                        className="btn btn-outline-light btn-lg"
                         type="submit"
                         value="Đăng ký"
                       />

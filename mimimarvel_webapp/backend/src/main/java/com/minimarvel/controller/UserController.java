@@ -1,6 +1,7 @@
 package com.minimarvel.controller;
 
 
+
 import com.minimarvel.model.dto.UserDTO;
 import com.minimarvel.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,11 +34,24 @@ public class UserController {
         }
     }
 
+//    @PostMapping("login")
+//    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+//        try {
+//            UserDTO userDTO = userService.login(loginRequest.getUsername(), loginRequest.getPassword());
+//
+//            return ResponseEntity.ok(userDTO);
+//        } catch(Exception e) {
+//            return ResponseEntity.badRequest().body("Login failed "+ e.getMessage());
+//        }
+//    }
+
     @PostMapping("login")
     public ResponseEntity<?> login(@RequestParam String username, @RequestParam String password) {
         try {
             UserDTO userDTO = userService.login(username, password);
-
+            if(userDTO == null) {
+                return ResponseEntity.badRequest().body("Login failed");
+            }
             return ResponseEntity.ok(userDTO);
         } catch(Exception e) {
             return ResponseEntity.badRequest().body("Login failed "+ e.getMessage());

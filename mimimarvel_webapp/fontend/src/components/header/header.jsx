@@ -1,6 +1,6 @@
 // import React from "react";
 
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/favicon.png";
 import cart from "../../assets/shopping_cart.png";
 import find from "../../assets/find.png";
@@ -190,7 +190,7 @@ const Header = () => {
                         </NavLink>
                       </li>
                       <li>
-                        <NavLink to="/profile" className="dropdown-item">
+                        <NavLink to="/myorder" className="dropdown-item">
                           Đơn hàng
                         </NavLink>
                       </li>
@@ -234,7 +234,7 @@ const Header = () => {
       >
         {results.map((product) => (
           <div key={product.id}>
-            <NavLink to={`/singleProduct/${product.id}`}>
+            <Link to={`/singleProduct/${product.id}`}>
               <div className="container mt-3">
                 <div className="row">
                   <div className="col-md-4">
@@ -253,7 +253,7 @@ const Header = () => {
                   </div>
                 </div>
               </div>
-            </NavLink>
+            </Link>
             <hr />
           </div>
         ))}

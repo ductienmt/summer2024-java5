@@ -2,9 +2,12 @@ package com.minimarvel.service.impl;
 
 import com.minimarvel.entity.Product;
 import com.minimarvel.model.dto.ProductDTO;
+import com.minimarvel.model.dto.PurchaseDetailDTO;
 import com.minimarvel.model.mapper.ProductMapper;
 import com.minimarvel.repository.BrandRepository;
 import com.minimarvel.repository.ProductRepository;
+import com.minimarvel.repository.PurchaseDetailRepository;
+import com.minimarvel.repository.PurchaseRepository;
 import com.minimarvel.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +27,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private BrandRepository brandRepository;
+
+    @Autowired
+    private PurchaseDetailRepository purchaseDetailRepository;
 
 
     @Override
@@ -85,6 +91,17 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductDTO> findProduct(String keyword) {
         return productRepository.findByProductNameOrCategoryNameContaining(keyword).stream().map(productMapper::toDTO).collect(Collectors.toList());
+    }
+
+
+    @Override
+    public List<ProductDTO> getPopularProduct() {
+        return purchaseDetailRepository.findTop5MostPurchasedProductIds(PageRequest.of(0, 4)).stream()
+                .map(productRepository::findById)
+                .filter(java.util.Optional::isPresent)
+                .map(java.util.Optional::get)
+                .map(productMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
 

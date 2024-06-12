@@ -1,6 +1,26 @@
+import { useEffect, useState } from "react";
 import "./popularProduct.css";
+import axios from "axios";
+import Product from "../product/product";
 
 const PopularProduct = () => {
+  window.scrollTo(0, 0);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    loadProducts();
+  }, []);
+
+  const loadProducts = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:8080/product/getPopularProduct"
+      );
+      setProducts(res.data);
+    } catch (error) {
+      console.error("Error loading categories", error);
+    }
+  };
   return (
     <>
       <div className="container gx-0 py-3">
@@ -8,19 +28,15 @@ const PopularProduct = () => {
         <div className="row gx-0">
           <div className="col-md-12">
             <div className="products-main">
-              <div className="product">
-                <div className="product-image">
-                  <img
-                    src="https://via.placeholder.com/150"
-                    alt="product"
-                    className="img-fluid"
-                  />
-                </div>
-                <div className="product-details">
-                  <h6 className="product-name">Product Name</h6>
-                  <p className="product-price">Price</p>
-                </div>
-              </div>
+              {products.map((product, index) => (
+                <Product
+                  name={product.name}
+                  image={product.image}
+                  price={product.price}
+                  id={product.id}
+                  key={index}
+                />
+              ))}
             </div>
           </div>
         </div>

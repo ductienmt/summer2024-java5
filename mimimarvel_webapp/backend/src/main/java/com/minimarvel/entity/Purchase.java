@@ -47,7 +47,7 @@ public class Purchase {
     @Column(name = "order_status", nullable = false, length = 50)
     private String orderStatus;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "services_id")
     private Services services;
 

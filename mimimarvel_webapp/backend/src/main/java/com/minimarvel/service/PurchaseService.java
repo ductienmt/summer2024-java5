@@ -7,7 +7,8 @@ import com.minimarvel.model.dto.PurchaseDetailDTO;
 import java.util.List;
 
 public interface PurchaseService {
-    void createPurchase(PurchaseDTO purchaseDTO, PurchaseDetailDTO purchaseDetailDTO);
+    void createPurchase(PurchaseDTO purchaseDTO);
+    void createPurchaseDetail(PurchaseDetailDTO purchaseDetailDTO);
     void updatePurchase(Long id, String status);
     void deletePurchase(Long id);
     List<PurchaseDTO> getAllPurchase();

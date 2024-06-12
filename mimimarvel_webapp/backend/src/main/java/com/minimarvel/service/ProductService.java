@@ -17,4 +17,5 @@ public interface ProductService {
     List<ProductDTO> getProductsByCategory(Integer categoryId);
     List<ProductDTO> getNewProduct(Pageable pageable);
     List<ProductDTO> findProduct(String keyword);
+    List<ProductDTO> getPopularProduct();
 }

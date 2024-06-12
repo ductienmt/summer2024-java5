@@ -37,9 +37,9 @@ const Login = () => {
                 <div className="card-body p-5 text-center">
                   <form onSubmit={handleSubmit}>
                     <div className="mb-md-5 mt-md-4 pb-5">
-                      <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
+                      <h2 className="fw-bold mb-2 text-uppercase">Đăng nhập</h2>
                       <p className="text-white-50 mb-5">
-                        Please enter your login and password!
+                        Hãy nhập username và mật khẩu để đăng nhập !
                       </p>
                       <div className="form-outline form-white mb-4">
                         <label className="form-label">Username</label>
@@ -52,7 +52,7 @@ const Login = () => {
                         />
                       </div>
                       <div className="form-outline form-white mb-4">
-                        <label className="form-label">Password</label>
+                        <label className="form-label">Mật khẩu</label>
                         <input
                           type="password"
                           className="form-control form-control-lg"
@@ -65,15 +65,15 @@ const Login = () => {
                         className="btn btn-outline-light btn-lg px-5"
                         type="submit"
                       >
-                        Login
+                        Đăng nhập
                       </button>
                     </div>
                   </form>
                   <div>
                     <p className="mb-0">
-                      Don't have an account?{" "}
-                      <a href="#!" className="text-white-50 fw-bold">
-                        Sign Up
+                      Bạn chưa có tài khoản?{" "}
+                      <a href="/signup" className="text-white-50 fw-bold">
+                        Đăng ký tại đây
                       </a>
                     </p>
                   </div>
